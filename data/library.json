@@ -1,0 +1,114 @@
+{
+    "1234567890000": {
+        "Title": "Под игото",
+        "Author_s": [
+            "Иван Вазов"
+        ],
+        "Publication_Year": 1987,
+        "Publisher": "Просвета",
+        "Genre": "роман",
+        "Page_Count": 187,
+        "Format": "твърди корици",
+        "Price": 12.0,
+        "Purchase_Date": "23.06.1990",
+        "Personal_Rating": 5,
+        "Read_Status": "прочетена",
+        "Tags_Notes": "въстание, герои"
+    },
+    "1111111111000": {
+        "Title": "Двойната Лотхен",
+        "Author_s": [
+            "Ерих Кестнер"
+        ],
+        "Publication_Year": 1975,
+        "Publisher": "Изкуство",
+        "Genre": "повест",
+        "Page_Count": 66,
+        "Format": "меки корици",
+        "Price": 3.5,
+        "Purchase_Date": "21.01.1980",
+        "Personal_Rating": 5,
+        "Read_Status": "прочетена",
+        "Tags_Notes": "детска литература"
+    },
+    "2222222222000": {
+        "Title": "Чичо Томовата колиба",
+        "Author_s": [
+            "Хариет Бичър Стоу"
+        ],
+        "Publication_Year": 1980,
+        "Publisher": "Нови хоризонти",
+        "Genre": "роман",
+        "Page_Count": 197,
+        "Format": "меки корици",
+        "Price": 7.8,
+        "Purchase_Date": "03.05.1983",
+        "Personal_Rating": 5,
+        "Read_Status": "прочетена",
+        "Tags_Notes": "робство"
+    },
+    "3333333333000": {
+        "Title": "Антон и Точица",
+        "Author_s": [
+            "Ерих Кестнер"
+        ],
+        "Publication_Year": 1979,
+        "Publisher": "Нови хоризонти",
+        "Genre": "повест",
+        "Page_Count": 90,
+        "Format": "меки корици",
+        "Price": 5.6,
+        "Purchase_Date": "12.08.1980",
+        "Personal_Rating": 5,
+        "Read_Status": "прочетена",
+        "Tags_Notes": "детска литература"
+    },
+    "9789544745653": {
+        "Title": "Вашите слаби места",
+        "Author_s": [
+            "Уейн Дайър"
+        ],
+        "Publication_Year": 2011,
+        "Publisher": "КИБЕА",
+        "Genre": "проза",
+        "Page_Count": 303,
+        "Format": "меки корици",
+        "Price": 30.0,
+        "Purchase_Date": "14.05.2025",
+        "Personal_Rating": 4,
+        "Read_Status": "в процес на четене",
+        "Tags_Notes": "себепознание"
+    },
+    "7897897891000": {
+        "Title": "Дете на звездите",
+        "Author_s": [
+            "Арон Михай"
+        ],
+        "Publication_Year": 2023,
+        "Publisher": "Нова звезда",
+        "Genre": "поезия",
+        "Page_Count": 55,
+        "Format": "електронна книга",
+        "Price": 23.0,
+        "Purchase_Date": "01.04.2025",
+        "Personal_Rating": 3,
+        "Read_Status": "непрочетена",
+        "Tags_Notes": "стихотворения"
+    },
+    "9999999999000": {
+        "Title": "Африкански приказки",
+        "Author_s": [
+            "Афа Джелал"
+        ],
+        "Publication_Year": 1980,
+        "Publisher": "Народна просвета",
+        "Genre": "проза",
+        "Page_Count": 128,
+        "Format": "меки корици",
+        "Price": 15.5,
+        "Purchase_Date": "05.03.1988",
+        "Personal_Rating": 4,
+        "Read_Status": "прочетена",
+        "Tags_Notes": "детска литература"
+    }
+}
