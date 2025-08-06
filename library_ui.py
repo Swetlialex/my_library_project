@@ -3,6 +3,7 @@
 # Извън класа (глобална)
 # Тя се занимава с потребителски интерфейс – не е част от самата библиотека
 
+
 def add_book_interactively(library):
     print("\nДобавяне на нова книга:")
     title = input("Заглавие: ")
@@ -34,6 +35,7 @@ def add_book_interactively(library):
         Read_Status=read_status,
         Tags_Notes=notes
     )
+
 
 # нова глобална функция за редактиране на данни за книга
 def interactive_edit_book(library):
@@ -71,6 +73,7 @@ def interactive_edit_book(library):
     # Извикване на метода за редактиране
     library.edit_book(selected_isbn, **kwargs)
 
+
 # нова глобална функция за изтриване на книга
 def remove_book_interactively(library):
     if not library.books:
@@ -87,6 +90,7 @@ def remove_book_interactively(library):
     except (ValueError, IndexError):
         print("Невалиден избор.")
         return
+
 
     # Извикване на метода за изтриване
     library.remove_book(selected_isbn)
