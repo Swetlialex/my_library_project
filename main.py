@@ -9,8 +9,6 @@ from library_ui import add_book_interactively, interactive_edit_book, remove_boo
 # from library_ui import interactive_edit_book
 # from library_ui import remove_book_interactively
 
-
-#
  # меню
 
 
@@ -21,6 +19,7 @@ def show_menu():
     print("3. ❌ Изтрий книга")
     print("4. 🔍 Покажи всички книги")
     print("5. 🚪 Изход")
+
 
 def main():
     library = Library()
@@ -57,6 +56,7 @@ def main():
 
         else:
             print("⚠️ Невалидна опция. Опитай отново.")
+
 
 if __name__ == "__main__":
     main()
