@@ -63,6 +63,15 @@ class Library:
 
     def find_book(self, isbn):
         return self.books.get(isbn, None)
+    
+    # проверка дали книгата вече съществува в библиотеката
+    def find_book_by_title(self, title):
+        title = title.lower()
+        for isbn, book in self.books.items():
+            if book["Title"].lower() == title:
+                return book
+        return None
+
 
     def edit_book(self, isbn, **kwargs):
         if isbn not in self.books:
@@ -86,3 +95,39 @@ class Library:
                     print("Операцията беше отменена.")
             else:
                 print("Няма такава книга.")
+
+    # търсене 
+    def search_books(self, query):
+        query = query.lower()
+        results = []
+        for isbn, book in self.books.items():
+            if (
+                query in book["Title"].lower()
+                or any(query in author.lower() for author in book["Author_s"])
+                or query in isbn.lower()
+            ):
+                results.append((isbn, book))
+        return results
+
+
+    # разширено филтриране по жанр, статус, година, рейтинг, тагове
+    def filter_books(self, genres=None, status=None, year_range=None, rating_range=None, tags=None):
+        results = []
+        for isbn, book in self.books.items():
+            if genres and book["Genre"] not in genres:
+                continue
+            if status and book["Read_Status"].lower() != status.lower():
+                continue
+            if year_range:
+                year = book["Publication_Year"]
+                if not (year_range[0] <= year <= year_range[1]):
+                    continue
+            if rating_range:
+                rating = book["Personal_Rating"]
+                if rating is None or not (rating_range[0] <= rating <= rating_range[1]):
+                    continue
+            if tags:
+                if not any(tag.lower() in book["Tags_Notes"].lower() for tag in tags):
+                    continue
+            results.append((isbn, book))
+        return results

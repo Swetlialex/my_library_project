@@ -3,10 +3,13 @@
 # Извън класа (глобална)
 # Тя се занимава с потребителски интерфейс – не е част от самата библиотека
 
-
+# добавя книга в библиотеката
 def add_book_interactively(library):
     print("\nДобавяне на нова книга:")
     title = input("Заглавие: ")
+# 
+
+
     authors = input("Автор/и (разделени със запетая): ").split(",")
     isbn = input("ISBN: ")
     pub_year = int(input("Година на публикуване: "))
@@ -19,6 +22,7 @@ def add_book_interactively(library):
     rating = int(input("Оценка (1-5): "))
     read_status = input("Статус на четене: ")
     notes = input("Бележки/тагове: ")
+
 
     library.add_book(
         Title=title,
@@ -34,8 +38,8 @@ def add_book_interactively(library):
         Personal_Rating=rating,
         Read_Status=read_status,
         Tags_Notes=notes
-    )
-
+        )
+    print(f"✅ Книгата „{title}“ беше добавена успешно.")
 
 # нова глобална функция за редактиране на данни за книга
 def interactive_edit_book(library):
@@ -94,5 +98,57 @@ def remove_book_interactively(library):
 
     # Извикване на метода за изтриване
     library.remove_book(selected_isbn)
+
+    # търсене на книга
+def search_books_interactively(library):
+    query = input("🔍 Въведи заглавие, автор или ISBN: ")
+    results = library.search_books(query)
+    if results:
+        print(f"\n📚 Намерени книги ({len(results)}):")
+        for isbn, book in results:
+            print(f"{book['Title']} — {', '.join(book['Author_s'])} (ISBN: {isbn})")
+    else:
+        print("❌ Няма съвпадения.")
+
+
+    # разширено филтриране по жанр, статус, година, рейтинг, тагове
+def filter_books_interactively(library):
+    print("\n🔎 Разширено филтриране:")
+    genres = input("Жанрове (разделени със запетая, или празно): ").split(",") if input("Филтрирай по жанр? (y/n): ").lower() == "y" else None
+    status = input("Статус на четене (read/unread/in progress): ") if input("Филтрирай по статус? (y/n): ").lower() == "y" else None
+    year_range = None
+    if input("Филтрирай по година? (y/n): ").lower() == "y":
+        try:
+            start = int(input("От година: "))
+            end = int(input("До година: "))
+            year_range = (start, end)
+        except ValueError:
+            print("⚠️ Невалиден диапазон.")
+    rating_range = None
+    if input("Филтрирай по рейтинг? (y/n): ").lower() == "y":
+        try:
+            min_r = int(input("Минимален рейтинг: "))
+            max_r = int(input("Максимален рейтинг: "))
+            rating_range = (min_r, max_r)
+        except ValueError:
+            print("⚠️ Невалиден рейтинг.")
+    tags = input("Тагове/ключови думи: ").split(",") if input("Филтрирай по тагове? (y/n): ").lower() == "y" else None
+
+    results = library.filter_books(
+        genres=[g.strip() for g in genres] if genres else None,
+        status=status,
+        year_range=year_range,
+        rating_range=rating_range,
+        tags=[t.strip() for t in tags] if tags else None
+    )
+
+    if results:
+        print(f"\n📚 Намерени книги ({len(results)}):")
+        for isbn, book in results:
+            print(f"{book['Title']} — {', '.join(book['Author_s'])} (ISBN: {isbn})")
+    else:
+        print("❌ Няма съвпадения.")
+
+    
 
 

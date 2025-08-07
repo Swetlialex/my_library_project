@@ -6,19 +6,29 @@ os.makedirs("data", exist_ok=True)
 
 from library import Library
 from library_ui import add_book_interactively, interactive_edit_book, remove_book_interactively
-# from library_ui import interactive_edit_book
-# from library_ui import remove_book_interactively
+from library_ui import search_books_interactively
+from library_ui import filter_books_interactively
 
  # меню
 
 
 def show_menu():
     print("\n📖 Библиотечна система")
+    print("\n Управление на книги")
     print("1. 📘 Добави нова книга")
     print("2. ✏️ Редактирай книга")
     print("3. ❌ Изтрий книга")
     print("4. 🔍 Покажи всички книги")
-    print("5. 🚪 Изход")
+    
+    print("\n Търсене и организация")
+    
+    print("5. 🔍 Търсене на книга")
+    print("6. 🧮 Разширено филтриране")
+   
+    print("\n Анализ на колекцията")
+
+    print("7. 🚪 Изход")
+
 
 
 def main():
@@ -51,8 +61,15 @@ def main():
             library.list_books()
 
         elif choice == "5":
+            search_books_interactively(library)
+
+        elif choice == "6":
+            filter_books_interactively(library)
+
+        elif choice == "7":
             print("👋 Довиждане!")
             break
+
 
         else:
             print("⚠️ Невалидна опция. Опитай отново.")
