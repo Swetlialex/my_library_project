@@ -238,5 +238,21 @@
         "Personal_Rating": 2,
         "Read_Status": "чете се",
         "Tags_Notes": "конгнитивно-поведенческа терапия"
+    },
+    "9999666622222": {
+        "Title": "Ад",
+        "Author_s": [
+            "Данте Алигери"
+        ],
+        "Publication_Year": 1997,
+        "Publisher": "Република",
+        "Genre": "поезия",
+        "Page_Count": 165,
+        "Format": "меки корици",
+        "Price": 13.8,
+        "Purchase_Date": "05.08.2004",
+        "Personal_Rating": 3,
+        "Read_Status": "в процес на четене",
+        "Tags_Notes": "учебна литература"
     }
 }

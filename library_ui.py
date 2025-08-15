@@ -117,7 +117,7 @@ def filter_books_interactively(library):
     genres = input("Жанрове (проза или поезия / разделени със запетая, или празно): ").split(",") if input("Филтрирай по жанр? (y/n): ").lower() == "y" else None
     status = input("Статус на четене (read/unread/in progress): ") if input("Филтрирай по статус? (y/n): ").lower() == "y" else None
     year_range = None
-    if input("Филтрирай по година? (y/n): ").lower() == "y":
+    if input("Филтрирай по година? (да/не): ").lower() == "да":
         try:
             start = int(input("От година: "))
             end = int(input("До година: "))
@@ -125,14 +125,14 @@ def filter_books_interactively(library):
         except ValueError:
             print("⚠️ Невалиден диапазон.")
     rating_range = None
-    if input("Филтрирай по рейтинг? (y/n): ").lower() == "y":
+    if input("Филтрирай по рейтинг? (да/не): ").lower() == "да":
         try:
             min_r = int(input("Минимален рейтинг: "))
             max_r = int(input("Максимален рейтинг: "))
             rating_range = (min_r, max_r)
         except ValueError:
             print("⚠️ Невалиден рейтинг.")
-    tags = input("Тагове/ключови думи: ").split(",") if input("Филтрирай по тагове? (y/n): ").lower() == "y" else None
+    tags = input("Тагове/ключови думи: ").split(",") if input("Филтрирай по тагове? (да/не): ").lower() == "да" else None
 
     results = library.filter_books(
         genres=[g.strip() for g in genres] if genres else None,

@@ -14,7 +14,8 @@ from library_ui import filter_books_interactively
 
 def show_menu():
     print("\n📖 Библиотечна система")
-    print("\n Управление на книги")
+    print("="*40)
+    print("Управление на книги")
     print("1. 📘 Добави нова книга")
     print("2. ✏️ Редактирай книга")
     print("3. ❌ Изтрий книга")
@@ -26,9 +27,11 @@ def show_menu():
     print("6. 🧮 Разширено филтриране")
    
     print("\n Анализ на колекцията")
-
-    print("7. 🚪 Изход")
-
+    print("7. 📊 Статистика на колекцията")
+    print("8. 📊 Разпределение на книгите по жанр")
+    print("9. 📊 Съотношение прочетени спрямо непрочетени книги")
+    print("10. 🚪 Изход")
+    print("="*40)
 
 
 def main():
@@ -46,8 +49,9 @@ def main():
                 else:
                     add_book_interactively(library)
         
-        # абсолютен път до файла library.json
-                    library.save_to_file("c:/Users/Svetla/My_Python/Lab_project/my_library_project/data/library.json")
+        # относителен път до файла library.json
+                    #library.save_to_file("c:/Users/Svetla/My_Python/Lab_project/my_library_project/data/library.json")
+                    library.save_to_file("./data/library.json")
 
 
         elif choice == "2":
@@ -67,16 +71,26 @@ def main():
             filter_books_interactively(library)
 
         elif choice == "7":
+            library.generate_statistics()
+
+        elif choice == "8":
+            library.generate_statistics_genre()
+
+        elif choice == "9":
+            library.generate_statistics_read_unread()
+
+        
+        elif choice == "10":
             print("👋 Довиждане!")
             break
 
-
+       
         else:
             print("⚠️ Невалидна опция. Опитай отново.")
 
 
 if __name__ == "__main__":
-    main()
+     main()
   
 
 

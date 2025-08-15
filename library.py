@@ -131,3 +131,57 @@ class Library:
                     continue
             results.append((isbn, book))
         return results
+
+
+# Статистика - общ брой книги / обща стойност на колекцията
+    def generate_statistics(self):
+        total_books = len(self.books)
+        total_value = sum(book.get("Price", 0.0) for book in self.books.values())
+
+        print("\n📈 Статистика на колекцията:")
+        print("*"*40)
+        print(f"• Общ брой книги: {total_books}")
+        print(f"• Обща стойност: {total_value:.2f} лв")
+        print("*"*40)
+
+    
+
+# Жанрова статистика - разпределение на книгите по жанр 
+    def generate_statistics_genre(self):
+        
+        genre_counts = {"проза": 0, "поезия": 0, "друго": 0}
+        for book in self.books.values():
+            genre = book.get("Genre", "").strip().lower()
+            if genre == "проза":
+                genre_counts["проза"] += 1
+            elif genre == "поезия":
+                genre_counts["поезия"] += 1
+            else:
+                genre_counts["друго"] += 1
+
+        print("Разпределение на книгите по жанр:")
+        print("*"*40)
+        for genre, count in genre_counts.items():
+            print(f"  - {genre.capitalize()}: {count}")
+        print("*"*40)
+
+#  Съотношение прочетени спрямо непрочетени книги  
+    
+    def generate_statistics_read_unread(self):
+        
+        status_counts = {"прочетена": 0, "непрочетена": 0, "в процес на четене": 0}
+        for book in self.books.values():
+            status = book.get("Read_Status", "").strip().lower()
+            if status == "прочетена":
+                status_counts["прочетена"] += 1
+            elif status == "непрочетена":
+                status_counts["непрочетена"] += 1
+            else:
+                status_counts["в процес на четене"] += 1
+
+        print("Разпределение на книгите по статус:")
+        print("*"*40)
+        for status, count in status_counts.items():
+           print(f"  - {status.capitalize()}: {count}")
+            
+        print("*"*40)
