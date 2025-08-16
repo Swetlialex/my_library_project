@@ -270,21 +270,5 @@
         "Personal_Rating": 2,
         "Read_Status": "в процес на четене",
         "Tags_Notes": "романтика"
-    },
-    "9999999991222": {
-        "Title": "Листопад",
-        "Author_s": [
-            "Ана Маринова"
-        ],
-        "Publication_Year": 2024,
-        "Publisher": "Лира",
-        "Genre": "поезия",
-        "Page_Count": 80,
-        "Format": "меки корици",
-        "Price": 18.0,
-        "Purchase_Date": "22.11.2024",
-        "Personal_Rating": 2,
-        "Read_Status": "непрочетена",
-        "Tags_Notes": "стихотворения"
     }
 }
