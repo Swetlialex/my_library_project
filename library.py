@@ -1,9 +1,12 @@
 import json
 
+import re
+
 class Library:
     def __init__(self):
         self.books = {}
 
+# зареждане на библиотеката от json файл
 
     def load_from_file(self, filename):
         try:
@@ -15,11 +18,15 @@ class Library:
         except json.JSONDecodeError:
             print(f"Грешка при четене на {filename}. Проверете формата на JSON.")
 
+
+# запис на библиотеката в json файл
+
     def save_to_file(self, filename):
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(self.books, f, ensure_ascii=False, indent=4)
         print(f"Записани книги в {filename}")
 
+# добавяне на книга
 
     def add_book(self, **kwargs):
         isbn = kwargs.get("ISBN")
@@ -39,6 +46,8 @@ class Library:
             "Read_Status": kwargs.get("Read_Status", "unread"),
             "Tags_Notes": kwargs.get("Tags_Notes", "")
         }
+
+# списък с книгите в библиотеката
 
     def list_books(self):
         if not self.books:
@@ -61,10 +70,15 @@ class Library:
             print(f"Notes: {book['Tags_Notes']}")
             print("—" * 40)
 
+
+# търсене на книга
+
     def find_book(self, isbn):
         return self.books.get(isbn, None)
-    
-    # проверка дали книгата вече съществува в библиотеката
+
+
+# проверка дали книгата вече съществува в библиотеката
+
     def find_book_by_title(self, title):
         title = title.lower()
         for isbn, book in self.books.items():
@@ -72,6 +86,7 @@ class Library:
                 return book
         return None
 
+# редактиране на съществуваща книга
 
     def edit_book(self, isbn, **kwargs):
         if isbn not in self.books:
@@ -85,10 +100,13 @@ class Library:
             else:
                 print(f"Полето '{key}' не съществува.")
 
+
+# изтриване на книга по ISBN
+
     def remove_book(self, isbn):
             if isbn in self.books:
-                confirm = input(f"Сигурни ли сте, че искате да изтриете книгата с ISBN {isbn}? (y/n): ")
-                if confirm.lower() == "y":
+                confirm = input(f"Сигурни ли сте, че искате да изтриете книгата с ISBN {isbn}? (да/не): ")
+                if confirm.lower() == "да":
                     del self.books[isbn]
                     print("Книгата беше изтрита.")
                 else:
@@ -96,21 +114,31 @@ class Library:
             else:
                 print("Няма такава книга.")
 
-    # търсене 
+
+# търсене на книга по заглавие или автор, или ISBN
+
+
     def search_books(self, query):
-        query = query.lower()
+        query = query.lower().strip()
+        pattern = re.compile(rf'\b{re.escape(query)}\b', re.IGNORECASE)
         results = []
+
         for isbn, book in self.books.items():
+            title = book.get("Title", "")
+            authors = book.get("Author_s", [])
+
             if (
-                query in book["Title"].lower()
-                or any(query in author.lower() for author in book["Author_s"])
+                pattern.search(title)
+                or any(pattern.search(author) for author in authors)
                 or query in isbn.lower()
             ):
                 results.append((isbn, book))
+
         return results
 
 
-    # разширено филтриране по жанр, статус, година, рейтинг, тагове
+# разширено филтриране по жанр, статус, година, рейтинг, тагове
+
     def filter_books(self, genres=None, status=None, year_range=None, rating_range=None, tags=None):
         results = []
         for isbn, book in self.books.items():
@@ -134,6 +162,7 @@ class Library:
 
 
 # Статистика - общ брой книги / обща стойност на колекцията
+
     def generate_statistics(self):
         total_books = len(self.books)
         total_value = sum(book.get("Price", 0.0) for book in self.books.values())
@@ -147,6 +176,7 @@ class Library:
     
 
 # Жанрова статистика - разпределение на книгите по жанр 
+
     def generate_statistics_genre(self):
         
         genre_counts = {"проза": 0, "поезия": 0, "друго": 0}
@@ -164,6 +194,7 @@ class Library:
         for genre, count in genre_counts.items():
             print(f"  - {genre.capitalize()}: {count}")
         print("*"*40)
+
 
 #  Съотношение прочетени спрямо непрочетени книги  
     

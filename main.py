@@ -27,7 +27,7 @@ def show_menu():
     print("6. 🧮 Разширено филтриране")
    
     print("\n Анализ на колекцията")
-    print("7. 📊 Статистика на колекцията")
+    print("7. 📊 Статистика: общ брой и обща стойност")
     print("8. 📊 Разпределение на книгите по жанр")
     print("9. 📊 Съотношение прочетени спрямо непрочетени книги")
     print("10. 🚪 Изход")
@@ -36,7 +36,7 @@ def show_menu():
 
 def main():
     library = Library()
-    library.load_from_file("data/library.json")
+    library.load_from_file("./data/library.json")
     while True:
         show_menu()
         choice = input("\nВъведи опция: ")
@@ -44,7 +44,7 @@ def main():
         if choice == "1":
             
             while True:
-                if input("Ще добавиш ли нова книга? (y/n): ").lower() != "y":
+                if input("Ще добавиш ли нова книга? (да/не): ").lower() != "да":
                     break
                 else:
                     add_book_interactively(library)
@@ -57,9 +57,11 @@ def main():
         elif choice == "2":
             interactive_edit_book(library)
 
+        
         elif choice == "3":
-            isbn = input("Въведи ISBN за изтриване: ")
-            library.remove_book(isbn)
+            remove_book_interactively(library)
+            library.save_to_file("./data/library.json")
+
 
         elif choice == "4":
             library.list_books()
@@ -67,6 +69,7 @@ def main():
         elif choice == "5":
             search_books_interactively(library)
 
+       
         elif choice == "6":
             filter_books_interactively(library)
 
