@@ -2,6 +2,8 @@ import json
 
 import re
 
+import shutil
+
 class Library:
     def __init__(self):
         self.books = {}
@@ -25,6 +27,7 @@ class Library:
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(self.books, f, ensure_ascii=False, indent=4)
         print(f"Записани книги в {filename}")
+
 
 # добавяне на книга
 
@@ -116,7 +119,6 @@ class Library:
 
 
 # търсене на книга по заглавие или автор, или ISBN
-
 
     def search_books(self, query):
         query = query.lower().strip()

@@ -8,9 +8,10 @@ from library import Library
 from library_ui import add_book_interactively, interactive_edit_book, remove_book_interactively
 from library_ui import search_books_interactively
 from library_ui import filter_books_interactively
+from backup import backup_library
+
 
  # меню
-
 
 def show_menu():
     print("\n📖 Библиотечна система")
@@ -51,17 +52,21 @@ def main():
         
         # относителен път до файла library.json
                     #library.save_to_file("c:/Users/Svetla/My_Python/Lab_project/my_library_project/data/library.json")
+                    
                     library.save_to_file("./data/library.json")
-
+                    
 
         elif choice == "2":
             interactive_edit_book(library)
-
+            library.save_to_file("./data/library.json")
         
         elif choice == "3":
+            backup_library()  # 🔒 архивиране на колекцията преди изтриване на книга
+
             remove_book_interactively(library)
             library.save_to_file("./data/library.json")
-
+            
+            
 
         elif choice == "4":
             library.list_books()
